@@ -1,0 +1,11 @@
+<div class="d-flex">
+  <app-tag
+    class="m-2"
+    *ngFor="let item of items; index as i"
+    [text]="item.label"
+    [removable]="allowRemoving"
+    [selected]="item.selected"
+    (clicked)="onTagClicked(item)"
+    (removed)="onTagRemove(i)"
+  ></app-tag>
+</div>

@@ -1,0 +1,35 @@
+/* Including this in angular.json does not seem to work */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bs-light) !important;
+}
+
+.image-square-xs {
+  height: 50px;
+  width: 50px;
+}
+
+.image-square-sm {
+  height: 80px;
+  width: 80px;
+}
+
+.image-square-md {
+  height: 150px;
+  width: 150px;
+}
+
+.image-landspace-sm {
+  min-height: 50px;
+  max-height: 100px;
+}
+
+.image-landscape-lg {
+  min-height: 200px;
+  max-height: 400px;
+}

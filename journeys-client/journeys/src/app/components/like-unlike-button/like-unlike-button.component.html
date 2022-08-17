@@ -1,0 +1,18 @@
+<div class="d-flex" *ngIf="user && post && post.authData">
+  <button
+    *ngIf="!post.authData.liked"
+    type="button"
+    class="btn"
+    (click)="onLike()"
+  >
+    <i class="bi bi-heart text-danger"></i>
+  </button>
+  <button
+    *ngIf="post.authData.liked"
+    type="button"
+    class="btn"
+    (click)="onUnlike()"
+  >
+    <i class="bi bi-heart-fill text-danger"></i>
+  </button>
+</div>

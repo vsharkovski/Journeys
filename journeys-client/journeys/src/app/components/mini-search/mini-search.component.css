@@ -1,0 +1,27 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.item {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.item:hover {
+  background: gray;
+}
+
+.item.profile:hover {
+  background: cadetblue;
+}
+
+.item.journey:hover {
+  background: crimson;
+}
+
+#search {
+  max-height: 20rem;
+  width: 13rem;
+  z-index: 1;
+}

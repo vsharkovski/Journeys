@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h5 class="modal-title">Log in</h5>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="activeModal.dismiss()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="mb-3">
+      <label for="loginUsername" class="form-label">Username</label>
+      <input
+        formControlName="username"
+        [class.is-invalid]="
+          usernameField && usernameField.touched && usernameField.invalid
+        "
+        class="form-control"
+        id="loginUsername"
+      />
+      <div
+        *ngIf="usernameField && usernameField.touched && usernameField.invalid"
+        class="d-block invalid-feedback"
+      >
+        Please provide a username.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="loginPassword" class="form-label">Password</label>
+      <input
+        formControlName="password"
+        [class.is-invalid]="
+          passwordField && passwordField.touched && passwordField.invalid
+        "
+        type="password"
+        class="form-control"
+        id="loginPassword"
+      />
+      <div
+        *ngIf="passwordField && passwordField.touched && passwordField.invalid"
+        class="d-block invalid-feedback"
+      >
+        Please provide a password.
+      </div>
+    </div>
+    <button
+      [disabled]="form.invalid"
+      type="submit"
+      class="mt-3 btn btn-dark w-100"
+    >
+      Submit
+    </button>
+    <div
+      class="alert alert-danger mt-3"
+      *ngIf="f.submitted && lastMessage && !lastMessage.success"
+    >
+      Wrong username or password.
+    </div>
+  </form>
+  <!-- <div class="alert alert-success mt-3" *ngIf="lastMessage?.success">
+    You have successfully logged in!
+  </div> -->
+</div>

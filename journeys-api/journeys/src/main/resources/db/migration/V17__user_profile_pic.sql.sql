@@ -1,0 +1,1 @@
+alter table users add column profile_picture bytea default null

@@ -1,0 +1,15 @@
+<button
+  class="btn badge position-relative"
+  [class.text-bg-primary]="selected"
+  [class.text-bg-secondary]="!selected"
+  (click)="onClicked()"
+>
+  <span>{{ text }}</span>
+  <span
+    *ngIf="removable"
+    (click)="onRemoved()"
+    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+  >
+    X
+  </span>
+</button>

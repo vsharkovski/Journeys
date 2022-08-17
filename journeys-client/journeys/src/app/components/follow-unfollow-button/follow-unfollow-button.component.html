@@ -1,0 +1,20 @@
+<div class="d-flex" *ngIf="loggedUser && targetUser && targetUser.authData">
+  <button
+    *ngIf="!targetUser.authData.following && loggedUser.id != targetUser.id"
+    type="button"
+    class="btn btn-outline-dark d-flex"
+    [class.btn-sm]="smallButton"
+    (click)="onFollow()"
+  >
+    Follow
+  </button>
+  <button
+    *ngIf="targetUser.authData.following && loggedUser.id != targetUser.id"
+    type="button"
+    class="btn btn-outline-dark d-flex"
+    [class.btn-sm]="smallButton"
+    (click)="onUnfollow()"
+  >
+    Unfollow
+  </button>
+</div>

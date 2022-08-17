@@ -1,0 +1,7 @@
+.item:hover {
+  background: gray;
+}
+
+.item.profile:hover {
+  background: cadetblue;
+}

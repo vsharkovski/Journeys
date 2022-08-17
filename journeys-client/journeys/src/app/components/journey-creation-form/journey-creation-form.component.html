@@ -1,0 +1,174 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+  <div class="container justify-content-center">
+    <h1 class="display-1 mb-5">Add your journey</h1>
+    <div class="row mb-5">
+      <ul
+        ngbNav
+        #nav="ngbNav"
+        [(activeId)]="currentTab"
+        (shown)="onPageShown($event)"
+        [destroyOnHide]="false"
+        class="nav nav-pills col-auto"
+        orientation="vertical"
+      >
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>General info</a>
+          <ng-template ngbNavContent>
+            <label for="title" class="form-label"
+              >Name your journey. Shorter names are better!</label
+            >
+            <input
+              id="title"
+              type="text"
+              class="form-control"
+              formControlName="title"
+            />
+            <div
+              *ngIf="titleField && titleField.touched && titleField.invalid"
+              class="d-block invalid-feedback"
+            >
+              Your journey must have a title.
+            </div>
+            <label for="description" class="form-label mt-3"
+              >Talk about your journey. You can talk about places you visited,
+              such as countries, cities, landmarks, resorts, restaurants,
+              events, and so on. Did you enjoy your trip or trips? Would you
+              recommend this to others?</label
+            >
+            <textarea
+              id="description"
+              class="form-control"
+              formControlName="description"
+            ></textarea>
+            <div
+              *ngIf="
+                descriptionField &&
+                descriptionField.touched &&
+                descriptionField.invalid
+              "
+              class="d-block invalid-feedback"
+            >
+              Your description is too long!
+            </div>
+            <p class="mt-3">When did your journey take place?</p>
+            <app-date-picker
+              (datesChanged)="onDateChange($event)"
+            ></app-date-picker>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>Costs</a>
+          <ng-template ngbNavContent>
+            <label for="totalCost" class="form-label">
+              How much did this experience cost you? Please enter in Euros (€,
+              EUR). If unsure, enter 0.
+            </label>
+            <input
+              id="totalCost"
+              type="number"
+              step="1"
+              min="0"
+              max="10000"
+              class="form-control"
+              formControlName="totalCost"
+            />
+            <div
+              *ngIf="costField && costField.touched && costField.invalid"
+              class="d-block invalid-feedback"
+            >
+              Costs must be between 0 and 10000.
+            </div>
+            <label for="costComment" class="form-label mt-3">
+              Any special comment about the costs / expenses?
+            </label>
+            <input
+              id="costComment"
+              type="text"
+              class="form-control"
+              formControlName="costComment"
+            />
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink>Pictures</a>
+          <ng-template ngbNavContent>
+            <div class="col-md-12">
+<!--              <label for="image" class="form-label"-->
+<!--                >This is where the pictures go</label-->
+<!--              >-->
+              <!--              <input-->
+              <!--                type="file"-->
+              <!--                class="form-control"-->
+              <!--                id="image"-->
+              <!--                name="image"-->
+              <!--                accept="image/png, image/gif, image/jpeg"-->
+              <!--                #image-->
+              <!--                (change)="onFileChange($event)"-->
+              <!--              />-->
+<!--              <app-image-upload id="image"></app-image-upload>-->
+              <label for="image" class="form-label">If you could choose one photo to represent your whole journey, what would it be? Let people know here!</label>
+              <input type="file" class="form-control" id="image" name="image" formControlName="image"
+                     accept="image/png, image/jpeg" (change)="onFileChange($event)">
+
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="4">
+          <a ngbNavLink>Locations</a>
+          <ng-template ngbNavContent>
+            <app-location-picker
+              [(locations)]="locations"
+              (map$)="receiveMap($event)"
+            ></app-location-picker>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="5">
+          <a ngbNavLink>Final thoughts</a>
+          <ng-template ngbNavContent>
+            <div class="row">
+              <label for="rating" class="form-label"
+                >How many stars would you give this journey?</label
+              >
+            </div>
+            <ngb-rating [(rate)]="rating" id="rating"></ngb-rating>
+            <pre><b>{{rating}}</b></pre>
+            <button
+              type="submit"
+              class="btn btn-secondary"
+              [disabled]="!form.valid"
+            >
+              Submit
+            </button>
+            <div *ngIf="!form.valid" class="d-block invalid-feedback">
+              Please check the other pages and fill in all necessary
+              information.
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="col ms-4"></div>
+    </div>
+    <div class="row mt-5 justify-content-end">
+      <div class="col-auto">
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            [disabled]="currentTab == firstTab"
+            (click)="onPreviousPage()"
+          >
+            <
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            [disabled]="currentTab == finalTab"
+            (click)="onNextPage()"
+          >
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

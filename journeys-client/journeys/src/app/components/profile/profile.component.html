@@ -1,0 +1,52 @@
+<div class="row" *ngIf="user">
+  <div class="col-auto" *ngIf="user.profilePicture">
+    <img
+      [src]="user.profilePicture | imageSource"
+      class="img-thumbnail image-square-md"
+    />
+  </div>
+  <div class="col-auto d-flex align-items-end">
+    <h1 class="display-1">{{ user.username }}</h1>
+  </div>
+  <div class="col d-flex align-items-end justify-content-end pb-3">
+    <h5 class="mx-2">
+      <a
+        class="text-decoration-none text-primary"
+        (click)="openFollowersModal()"
+      >
+        Followers: {{ user.followerCount! }}
+      </a>
+    </h5>
+    <h5 class="mx-2">
+      <a
+        class="text-decoration-none text-primary"
+        (click)="openFollowingModal()"
+      >
+        Following: {{ user.followingCount! }}
+      </a>
+    </h5>
+    <app-follow-unfollow-button
+      [loggedUser]="loggedUser"
+      [targetUser]="user"
+      [smallButton]="false"
+      (changedAuthorFollowStatus)="onAuthorFollowStatusChange($event)"
+      class="mx-2"
+    ></app-follow-unfollow-button>
+  </div>
+  <hr />
+</div>
+<div class="row mt-5 justify-content-center">
+  <div *ngIf="posts.length !== 0">
+    <h1 class="display-6 mb-3">Posts</h1>
+    <a *ngFor="let post of posts" class="text-reset text-decoration-none">
+      <app-post-preview
+        [post]="post"
+        [user]="user"
+        [showAuthorProfilePictures]="false"
+      ></app-post-preview>
+    </a>
+  </div>
+  <div *ngIf="posts.length === 0">
+    <h3 class="display-6">No posts from this user yet</h3>
+  </div>
+</div>

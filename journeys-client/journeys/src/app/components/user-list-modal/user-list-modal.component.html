@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ title }}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="activeModal.dismiss()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="item profile" *ngFor="let user of users">
+    <a
+      [routerLink]="['/profile', user.id]"
+      (click)="activeModal.close()"
+      data-bs-dismiss="modal"
+      class="text-decoration-none text-black"
+    >
+      <div class="d-flex align-items-center mt-2 mb-2">
+        <span class="ps-2">{{ user.username }}</span>
+      </div>
+    </a>
+  </div>
+</div>

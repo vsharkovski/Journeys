@@ -1,0 +1,1 @@
+alter table post add column picture bytea default null;

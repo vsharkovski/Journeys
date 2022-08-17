@@ -1,5 +1,5 @@
 # Journeys
-Full stack web application - Blog website for people who love travel
+Full stack web application - Blog website for people who love to travel
 
 ## Features
 - People can share their 'journeys', which are essentially travel experiences

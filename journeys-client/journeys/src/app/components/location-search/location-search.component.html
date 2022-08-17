@@ -1,0 +1,25 @@
+<div class="row">
+  <input
+    type="text"
+    class="form-control"
+    (focusin)="onFocusIn()"
+    (focusout)="onFocusOut()"
+    placeholder="Search for existing locations by their name..."
+    [formControl]="searchTerm"
+  />
+</div>
+<div class="row">
+  <div
+    *ngIf="resultsVisible && results.length > 0"
+    class="overflow-auto border bg-white position-absolute"
+    id="search"
+  >
+    <div
+      *ngFor="let result of results"
+      class="item"
+      (click)="onResultClick(result)"
+    >
+      <span class="ps-2">{{ result.name }}</span>
+    </div>
+  </div>
+</div>

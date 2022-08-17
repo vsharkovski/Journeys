@@ -1,0 +1,50 @@
+<div class="card-footer py-3 border-0" style="background-color: #f8f9fa">
+  <div class="d-flex flex-start w-100" *ngIf="loggedUser && canWriteComments">
+    <img
+      *ngIf="loggedUser?.profilePicture"
+      class="rounded-circle shadow-1-strong image-square-sm img-fluid me-3"
+      [src]="loggedUser.profilePicture | imageSource"
+    />
+    <div class="form-outline w-100">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <textarea
+          class="form-control"
+          id="textAreaExample"
+          rows="4"
+          style="background: #fff"
+          placeholder="{{ loggedUser.username }}, enter your comment here:"
+          formControlName="comment"
+        ></textarea>
+        <div
+          *ngIf="commentField.errors?.['minlength']"
+          class="d-block invalid-feedback"
+        >
+          Your comment is too short.
+        </div>
+        <div
+          *ngIf="commentField.errors?.['maxlength']"
+          class="d-block invalid-feedback"
+        >
+          Your comment is too long.
+        </div>
+        <div class="float-end mt-2 pt-1">
+          <button
+            type="submit"
+            class="btn btn-outline-success m-1"
+            [disabled]="!form.valid"
+          >
+            Post comment
+          </button>
+        </div>
+      </form>
+    </div>
+    <hr />
+  </div>
+  <div *ngFor="let comment of comments" class="mt-1">
+    <app-comment
+      [comment]="comment"
+      [loggedUser]="loggedUser"
+      (deleted)="onCommentDeleted(comment)"
+    ></app-comment>
+  </div>
+</div>

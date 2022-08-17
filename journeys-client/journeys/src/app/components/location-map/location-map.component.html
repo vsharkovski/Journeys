@@ -1,0 +1,11 @@
+<div
+  class="map"
+  leaflet
+  [leafletOptions]="options"
+  [leafletLayersControl]="layersControl"
+  (leafletMapReady)="onMapReady($event)"
+  (leafletClick)="onClick($event)"
+>
+  <div *ngFor="let layer of markerLayers" [leafletLayer]="layer"></div>
+  <div *ngFor="let layer of specialMarkerLayers" [leafletLayer]="layer"></div>
+</div>

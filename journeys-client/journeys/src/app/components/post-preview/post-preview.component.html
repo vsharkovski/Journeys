@@ -1,0 +1,102 @@
+<div
+  class="row justify-content-center bg-white mb-3 p-3 rounded-3 border"
+  *ngIf="post"
+>
+  <div class="row">
+    <div class="col-auto d-flex align-items-center">
+      <a [routerLink]="['/journey', post.id]" class="text-decoration-none">
+        <span class="h4 text-start text-wrap text-break">
+          {{ post.title }}
+        </span>
+      </a>
+    </div>
+    <div class="col d-flex align-items-center">
+      <span class="text-muted">
+        on {{ post.timestampCreated | date: "mediumDate" }}
+      </span>
+      <span class="fst-italic ms-auto me-3">
+        <a
+          [routerLink]="['/profile', post.author.id]"
+          class="link-primary text-decoration-none"
+        >
+          by {{ post.author.username }}
+        </a>
+      </span>
+      <!-- prettier-ignore -->
+      <a
+        [routerLink]="['/profile', post.author.id]"
+        class="me-3"
+        *ngIf="showAuthorProfilePictures && post.author.profilePicture">
+        <img
+          [src]="post.author.profilePicture | imageSource"
+          class="rounded-circle image-square-xs"
+        />
+      </a>
+      <app-follow-unfollow-button
+        [loggedUser]="user"
+        [targetUser]="post.author"
+        [smallButton]="true"
+        (changedAuthorFollowStatus)="onAuthorFollowStatusChange($event)"
+      >
+      </app-follow-unfollow-button>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div
+      class="col-auto"
+      [routerLink]="['/journey', post.id]"
+      *ngIf="post.picture"
+    >
+      <img
+        [src]="post.picture | imageSource"
+        class="image-landspace-sm rounded img-fluid"
+      />
+    </div>
+    <div class="col text-justify">
+      <a
+        [routerLink]="['/journey', post.id]"
+        class="text-decoration-none text-wrap text-break"
+        >{{ post.description }}</a
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex flex-row justify-content-end align-items-center">
+      <span *ngIf="post.likeCount != null" class="mx-1"
+        ><a class="text-decoration-none" (click)="openLikesModal()"
+          >{{ post.likeCount }} likes so far</a
+        ></span
+      >
+      <div *ngIf="post.likeCount != null" class="mx-1">
+        <app-like-unlike-button
+          [user]="user"
+          [post]="post"
+          (changedPostLikeStatus)="onPostLikeStatusChange($event)"
+        ></app-like-unlike-button>
+      </div>
+      <button
+        *ngIf="post.comments && post.comments.length > 0"
+        type="button"
+        class="btn mx-1"
+        (click)="collapse.toggle()"
+      >
+        <i
+          class="bi"
+          [class.bi-chat-right]="isCommentListCollapsed"
+          [class.bi-chat-right-fill]="!isCommentListCollapsed"
+        ></i>
+      </button>
+    </div>
+  </div>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCommentListCollapsed">
+    <h6 class="ms-3">Recent comments</h6>
+    <div class="card mt-3">
+      <app-comments-list
+        [loggedUser]="user"
+        [post]="post"
+        [canWriteComments]="false"
+        (commentsChange)="onCommentsChange($event)"
+      ></app-comments-list>
+    </div>
+  </div>
+</div>

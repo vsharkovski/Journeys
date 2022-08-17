@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/journeys
+    username: pinga
+    password: pinga
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    locations:
+      - classpath:db/migration
+    baseline-on-migrate: true
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  servlet:
+    multipart:
+      enabled: true
+      location: ${java.io.tmpdir}
+logging:
+  file:
+    path: logs
+server:
+  port: 8003
+journeys:
+  app:
+    jwtCookieName: journey
+    jwtSecret: journeySecretKeyVeryLongAndHard
+    jwtExpirationMs: 86400000

@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="term"
+        (focusin)="onFocusIn()"
+        (focusout)="onFocusOut()"
+        placeholder="I feel like exploring"
+      />
+      <div
+        *ngIf="resultsVisible"
+        class="overflow-auto border position-absolute bg-white"
+        id="search"
+      >
+        <div class="item" *ngIf="users.length === 0 && posts.length === 0">
+          <p class="text-black">No results found</p>
+        </div>
+        <div class="item profile" *ngFor="let user of users">
+          <a [routerLink]="['/profile', user.id]">
+            <div class="d-flex align-items-center mt-2 mb-2">
+              <span class="ps-2">{{ user.username }}</span>
+            </div>
+          </a>
+        </div>
+        <div class="item journey" *ngFor="let post of posts">
+          <a [routerLink]="['/journey', post.id]">
+            <div class="d-flex align-items-center mt-2 mb-2">
+              <span class="ps-2">{{ post.title }}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

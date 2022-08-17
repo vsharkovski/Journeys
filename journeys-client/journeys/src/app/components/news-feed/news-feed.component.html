@@ -1,0 +1,17 @@
+<div class="row p-5" *ngIf="posts && posts.length === 0">
+  <h1 class="display-6">
+    No journeys found.
+    <a [routerLink]="['/explore']" class="link-primary text-decoration-none"
+      >Go exploring to find new journeys!</a
+    >
+  </h1>
+</div>
+<div class="row justify-content-center" *ngIf="posts && posts.length > 0">
+  <h1 class="display-6 mb-4 text-center">{{ title }}</h1>
+  <app-post-preview
+    *ngFor="let post of posts"
+    [post]="post"
+    [user]="user"
+    (changedAuthorFollowStatus)="onAuthorFollowStatusChange($event)"
+  ></app-post-preview>
+</div>

@@ -1,0 +1,59 @@
+<h1 class="display-6 mb-4 text-center">Search all journeys</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div class="row">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="term"
+          placeholder="Search for journeys..."
+        />
+      </div>
+      <div class="row mt-3 mx-1">
+        <div class="col">
+          <label for="minCost" class="form-label">Minimum cost/expenses</label>
+          <input
+            type="number"
+            step="1"
+            min="0"
+            max="10000"
+            class="form-control"
+            formControlName="minCost"
+          />
+        </div>
+        <div class="col">
+          <label for="maxCost" class="form-label">Maximum cost/expenses</label>
+          <input
+            type="number"
+            step="1"
+            min="0"
+            max="10000"
+            class="form-control"
+            formControlName="maxCost"
+          />
+        </div>
+      </div>
+      <div class="row mt-3 mx-1">
+        <p>Locations visited</p>
+        <app-location-search
+          (searchResultSelected)="addLocationFromSearch($event)"
+        ></app-location-search>
+        <app-tag-container
+          [items]="locationTags"
+          (itemsChange)="onTagItemsChange($event)"
+          [allowRemoving]="true"
+          [allowSelecting]="true"
+        ></app-tag-container>
+      </div>
+    </div>
+    <div class="col-1">
+      <button type="submit" class="btn btn-secondary">Search</button>
+    </div>
+  </div>
+</form>
+<div class="row justify-content-center mt-5" *ngIf="posts">
+  <h1 class="display-6" *ngIf="posts.length > 0">Results</h1>
+  <h1 class="display-6" *ngIf="posts.length == 0">No results found</h1>
+  <app-post-preview *ngFor="let post of posts" [post]="post"></app-post-preview>
+</div>

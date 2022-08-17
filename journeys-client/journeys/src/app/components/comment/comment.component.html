@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-auto">
+        <div class="col mx-0 px-0" *ngIf="comment.author.profilePicture">
+          <div class="p-2">
+            <a [routerLink]="['/profile', comment.author.id]">
+              <img
+                [src]="comment.author.profilePicture | imageSource"
+                class="rounded-circle image-square-sm img-fluid"
+              />
+            </a>
+          </div>
+        </div>
+        <span class="card-title fst-bold d-flex justify-content-center"
+          ><a
+            [routerLink]="['/profile', comment.author.id]"
+            class="text-muted mb-0"
+            >{{ comment.author.username }}</a
+          ></span
+        >
+      </div>
+      <div class="col">
+        <span class="card-text text-wrap text-break">{{
+          comment.comment
+        }}</span>
+      </div>
+      <div class="col-auto d-flex flex-column align-items-end">
+        <span class="text-muted">
+          on {{ comment.timestampCreated | date: "mediumDate" }}
+        </span>
+        <button
+          *ngIf="loggedUser && comment.author.id === loggedUser.id"
+          type="button"
+          class="btn btn-sm mt-auto"
+          (click)="deleteComment()"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

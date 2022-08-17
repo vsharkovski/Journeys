@@ -1,0 +1,93 @@
+<div class="row justify-content-center" *ngIf="post">
+  <div class="row justify-content-start mt-3">
+    <div class="col-auto">
+      <h2 class="display-3">
+        <a [routerLink]="['.']" class="text-reset text-decoration-none">{{
+          post.title
+        }}</a>
+      </h2>
+    </div>
+    <div class="col-auto mt-2 align-self-end">
+      <a
+        [routerLink]="['/profile', post.author.id]"
+        class="text-decoration-none d-flex align-items-end"
+      >
+        <h5 class="text-muted">by {{ post.author.username }}</h5>
+        <img
+          *ngIf="post.author.profilePicture"
+          [src]="post.author.profilePicture | imageSource"
+          class="rounded-circle image-square-xs ms-3"
+        />
+      </a>
+      <app-follow-unfollow-button
+        [loggedUser]="user"
+        [targetUser]="post.author"
+        (changedAuthorFollowStatus)="onAuthorFollowStatusChange($event)"
+      ></app-follow-unfollow-button>
+      <span class="text-muted ms-auto">
+        on {{ post.timestampCreated | date: "mediumDate" }}
+      </span>
+    </div>
+  </div>
+  <div class="col-11 mt-5">
+    <div class="row mb-5 text-wrap text-break text-justify">
+      {{ post.description }}
+    </div>
+    <div class="row mt-3">
+      <div class="col-auto">
+        <h6>Estimated Costs / Expenses</h6>
+        <p>{{ post.cost }} €</p>
+      </div>
+      <div class="col-auto text-muted" *ngIf="post.costComment">
+        <h6>{{ post.author.username }}'s comment:</h6>
+        <p>{{ post.costComment }}</p>
+      </div>
+    </div>
+    <div class="row mt-3 align-items-center" *ngIf="post.picture">
+      <h6>Favorite picture</h6>
+      <div class="col mt-3">
+        <img
+          [src]="post.picture | imageSource"
+          class="img-fluid image-landscape-lg roundedmx-auto d-block"
+        />
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="post.locations && post.locations.length > 0">
+      <h6>Locations</h6>
+      <app-location-picker
+        [locations]="post.locations"
+        [allowAdding]="false"
+        [allowRemoving]="false"
+      ></app-location-picker>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="d-flex flex-row justify-content-end align-items-center">
+      <span class="mx-1">
+        <a class="text-decoration-none text-primary" (click)="openLikesModal()"
+          >{{ post.likeCount }} likes so far</a
+        ></span
+      >
+      <div *ngIf="post.likeCount != null" class="mx-1">
+        <app-like-unlike-button
+          [user]="user"
+          [post]="post"
+          (changedPostLikeStatus)="onPostLikeStatusChange($event)"
+        ></app-like-unlike-button>
+      </div>
+      <button
+        *ngIf="user && user.id == post.author.id"
+        type="button"
+        class="btn btn-outline-dark mx-1"
+        (click)="onDeletePost()"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <hr />
+    <h1 class="display-6 fs-3">Comments</h1>
+    <app-comments-list [loggedUser]="user" [post]="post"></app-comments-list>
+  </div>
+</div>
