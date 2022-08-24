@@ -21,18 +21,18 @@ Full stack web application - Blog website for people who love to travel
 
 ## Screenshots
 ### Home feed
-![home-feed](https://user-images.githubusercontent.com/9514529/183602182-87dbbc7b-6391-4c64-815a-a4989b8fe582.png)
+![home-feed](https://user-images.githubusercontent.com/81033013/185604329-72b7a649-ae98-477c-87b5-f6bbe0593950.png)
 
-### Example journey - Dubai
-![dubai-top](https://user-images.githubusercontent.com/9514529/183598870-4385c4d5-18dd-4cea-8d81-1feee3865381.png)
-![dubai-mid](https://user-images.githubusercontent.com/9514529/183601286-8e40c4f2-6e7d-4e55-98e6-2e76192106c5.png)
-![dubai-btm](https://user-images.githubusercontent.com/9514529/183601743-873a64fc-9272-4cfb-9dc1-d809bbd31b10.png)
+### Example journey - A nice trip around Macedonia
+![journey-top](https://user-images.githubusercontent.com/81033013/185604726-28af92e1-217a-4404-8824-decfd8fb7b56.png)
+![journey-mid](https://user-images.githubusercontent.com/81033013/185604946-bd8e4c71-72a3-477e-a7e5-cf26a4b85651.png)
+![journey-btm](https://user-images.githubusercontent.com/81033013/185605039-e742657f-6a1e-4323-8caf-dfd2439bf89e.png)
 
 ### Profile
-![profile](https://user-images.githubusercontent.com/9514529/183602791-7d089fdc-ba05-4187-b9a8-62137379797e.png)
+![profile](https://user-images.githubusercontent.com/81033013/185605227-bbe1f861-ae2e-44ad-b39b-04de1edb39dd.png)
 
 ### Searching / filtering
-![big-search-1](https://user-images.githubusercontent.com/9514529/183603795-38c4c1c2-152d-4e44-b3c0-c19fadbbc859.png)
+![big-search](https://user-images.githubusercontent.com/81033013/185605450-1e265518-4365-4543-ae38-931957c68b1d.png)
 
 ## Source code
 The source code for both the front-end and back-end will be uploaded soon.
