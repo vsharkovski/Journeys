@@ -34,5 +34,5 @@ Full stack web application - Blog website for people who love to travel
 ### Searching / filtering
 ![big-search](https://user-images.githubusercontent.com/81033013/185605450-1e265518-4365-4543-ae38-931957c68b1d.png)
 
-## Source code
-The source code for both the front-end and back-end will be uploaded soon.
+# Source code
+The source code can be found [here](https://github.com/vsharkovski/Journeys).
